@@ -30,7 +30,7 @@ def generate_data():
     """
     
     # 安定版のモデルを指定
-    model = genai.GenerativeModel('gemini-2.5-flash')
+    model = genai.GenerativeModel('gemini-3.8-flash')
     response = model.generate_content(prompt)
     
     return response.text
