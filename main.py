@@ -8,7 +8,7 @@ hf_token = os.environ.get("HF_TOKEN")
 
 # 2. Geminiの準備（AIの脳みそ）
 genai.configure(api_key=gemini_key)
-model = genai.GenerativeModel('gemini-1.5-flash')
+model = genai.GenerativeModel('gemini-2.5-flash')
 
 # 3. データ生成（Geminiに考えてもらう：今回は豆知識）
 response = model.generate_content("AIやテクノロジーに関する面白い豆知識を1つ教えてください。")
