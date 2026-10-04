@@ -24,8 +24,7 @@ login(token=hf_token)
 api = HfApi()
 
 # ★注意：ここの 'YOUR_HF_USERNAME' を自分のHugging Faceのユーザー名に変える！★
-HF_REPO = "powerisgodofpower/auto-generated-data" 
-
+HF_REPO = "Power2007/auto-generated-data"
 # データセットの箱がなければ作る
 try:
     api.create_repo(repo_id=HF_REPO, repo_type="dataset", exist_ok=True)
