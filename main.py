@@ -1,15 +1,15 @@
 import os
 from datetime import datetime
-from google import genai
+import google.generativeai as genai
 from huggingface_hub import HfApi
 
-# 1. APIキーとリポジトリの設定（環境変数と自分のリポジトリ名）
+# 1. APIキーとリポジトリの設定
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
 HF_TOKEN = os.environ.get("HF_TOKEN")
-HF_REPO = "Power2007/auto-generated-data"  # あなたのHugging Faceリポジトリ
+HF_REPO = "Power2007/auto-generated-data"
 
-# 2. Geminiクライアントの初期化
-client = genai.Client(api_key=GEMINI_API_KEY)
+# 2. GeminiのAPI設定
+genai.configure(api_key=GEMINI_API_KEY)
 
 def generate_data():
     today = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
@@ -29,11 +29,9 @@ def generate_data():
     - Keep it practical, structured, and ready to be used as fine-tuning data for LLMs.
     """
     
-    # Gemini 2.5 Flash など最新の軽量・高速モデルを指定
-    response = client.models.generate_content(
-        model="gemini-2.5-flash",
-        contents=prompt,
-    )
+    # 安定版のモデルを指定
+    model = genai.GenerativeModel('gemini-2.5-flash')
+    response = model.generate_content(prompt)
     
     return response.text
 
